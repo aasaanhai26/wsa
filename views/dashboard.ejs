@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Women's Safety App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    
+
+    <!-- Fade Animations -->
+    <style>
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out both;
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out both;
+        }
+
+        /* for location access */
+        #locationPopup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        #popupContent {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #popupContent button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-900 text-blue-300 font-sans relative">
+
+    <header class="bg-gray-800 text-white px-6 py-4 flex justify-between items-center shadow-lg fixed z-50 w-full   ">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+            <img src="../logo.jpg" alt="Logo" class="h-8 w-8">
+            <h1 class="text-xl font-bold text-blue-400">Welcome , <%= user.name %>
+            </h1>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="space-x-6 hidden md:flex">
+            <button class="nav-btn text-blue-300 hover:text-blue-400 transition" data-target="home">Home</button>
+            <button class="nav-btn text-blue-300 hover:text-blue-400 transition" data-target="profile">Profile</button>
+            <button class="nav-btn text-blue-300 hover:text-blue-400 transition"
+                data-target="settings">Settings</button>
+            <button class="nav-btn text-blue-300 hover:text-blue-400 transition" data-target="safety">Safety
+                Tips</button>
+            <button class="nav-btn text-blue-300 hover:text-blue-400 transition" data-target="map">View Map</button>
+            <a href="/logout"
+                class="bg-red-500 py-2 px-4 rounded-sm text-white font-semibold hover:bg-red-600">Logout</a>
+
+        </nav>
+
+        <!-- Mobile Menu Toggle (you can wire this up separately) -->
+        <div class="md:hidden text-blue-300 hover:text-blue-400">
+            <img class="rounded-full w-12 h-12" src="../images/testProfile.png" alt="">
+        </div>
+    </header>
+
+    <!-- Location Popup -->
+    <div id="locationPopup" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-lg text-center">
+            <h2 class="text-2xl font-semibold mb-4">Location Permission Required</h2>
+            <p class="mb-6 text-gray-600">We need your location (foreground and background) for safety reasons.</p>
+
+            <div id="spinner" class="hidden flex justify-center mb-4">
+                <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+
+            <button id="allowBtn"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded transition"
+                onclick="requestLocation()">
+                Allow Location Access
+            </button>
+        </div>
+    </div>
+    <main>
+        <div class="main-container py-10 ">
+            <!-- Main Sections -->
+
+            <section id="home"
+                class="section h-auto py-16 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+                <!-- Hero / Welcome -->
+                <div class="max-w-3xl mx-auto text-center px-4 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-fade-in-down">
+                        Welcome to Women's Safety
+                    </h1>
+                    <p class="text-blue-500 dark:text-blue-400 text-lg md:text-xl">
+                        Your safety, our priority. Stay connected, stay secure.
+                    </p>
+                </div>
+
+                <!-- Settings & Emergency Contacts Card -->
+                <div
+                    class="mt-12 max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-10 animate-fade-in">
+                    <!-- Header -->
+                    <header class="mb-8">
+                        <h2 class="text-2xl md:text-3xl font-bold animate-fade-in-down">
+                            Settings
+                        </h2>
+                    </header>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Form Column -->
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 animate-fade-in">Add Emergency Contact</h3>
+                            <form action="#" class="space-y-6 animate-fade-in">
+                                <div class="flex flex-col md:flex-row gap-4">
+                                    <input type="text" name="fullname"
+                                        class="flex-1 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                                        placeholder="Full Name" required />
+                                    <input type="tel" name="phone"
+                                        class="flex-1 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                                        placeholder="Phone Number" required />
+                                    <input type="text" name="relation"
+                                        class="flex-1 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                                        placeholder="Relation" required />
+                                </div>
+                                <button type="submit"
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-3 transition animate-fade-in">
+                                    Save Contact
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- List Column -->
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 animate-fade-in">Your Contacts</h3>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <!-- Example Card -->
+                                <li
+                                    class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow hover:shadow-md transition animate-fade-in">
+                                    <div class="p-4">
+                                        <h4 class="text-lg font-semibold mb-2">John Doe</h4>
+                                        <p class="text-gray-700 dark:text-gray-300"><strong>Phone:</strong> +1 234 567
+                                            890</p>
+                                        <p class="text-gray-700 dark:text-gray-300"><strong>Relation:</strong> Friend
+                                        </p>
+                                    </div>
+                                </li>
+                                <!-- Duplicate for each contact -->
+                                <li
+                                    class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow hover:shadow-md transition animate-fade-in">
+                                    <div class="p-4">
+                                        <h4 class="text-lg font-semibold mb-2">Jane Smith</h4>
+                                        <p class="text-gray-700 dark:text-gray-300"><strong>Phone:</strong> +1 987 654
+                                            321</p>
+                                        <p class="text-gray-700 dark:text-gray-300"><strong>Relation:</strong> Sister
+                                        </p>
+                                    </div>
+                                </li>
+                                <!-- …other cards… -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
+
+            <section id="profile"
+                class="section hidden h-screen flex flex-col justify-center items-center transition-all duration-700 bg-gray-800">
+                <h1 class="text-4xl font-bold mb-4 animate-fade-in-down">Profile</h1>
+                <p class="text-blue-400 max-w-md text-center animate-fade-in">Manage your details and trusted contacts.
+                </p>
+            </section>
+            <!-- Setting -->
+            <section id="settings"
+                class="section hidden h-screen flex flex-col justify-center items-center transition-all duration-700">
+                <h1 class="text-4xl font-bold mb-4 animate-fade-in-down">Settings</h1>
+                <p class="text-blue-400 max-w-md text-center animate-fade-in">Customize your alerts and zones securely.
+                </p>
+
+            </section>
+
+            <section id="safety"
+                class="section hidden h-screen flex flex-col justify-center items-center transition-all duration-700 bg-gray-800">
+                <h1 class="text-4xl font-bold mb-4 animate-fade-in-down">Safety Tips</h1>
+                <p class="text-blue-400 max-w-md text-center animate-fade-in">Learn smart safety practices to stay
+                    aware.
+                </p>
+            </section>
+
+            <section id="map"
+                class="section hidden h-screen flex flex-col justify-center items-center transition-all duration-700">
+                <h1 class="text-4xl font-bold mb-4 animate-fade-in-down">View Map</h1>
+                <p class="text-blue-400 max-w-md text-center animate-fade-in">Locate nearby safe areas quickly.</p>
+            </section>
+        </div>
+
+        <!-- Bottom Navbar -->
+        <div
+            class="fixed bottom-0 left-0 right-0 bg-gray-800 border-t-2 border-blue-400 shadow-inner sm:hidden rounded-2xl z-50">
+            <ul class="flex justify-around items-center py-3">
+                <li><button class="nav-btn flex flex-col items-center text-blue-300 hover:text-blue-400 transition"
+                        data-target="home">
+                        <svg class="h-6 w-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 12l2-2 7-7 7 7 2 2M13 5v6h6"></path>
+                        </svg>
+                        <span class="text-xs">Home</span>
+                    </button></li>
+                <li><button class="nav-btn flex flex-col items-center text-blue-300 hover:text-blue-400 transition"
+                        data-target="profile">
+                        <svg class="h-6 w-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M5.121 17.804A6 6 0 0112 16h0a6 6 0 016.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                            </path>
+                        </svg>
+                        <span class="text-xs">Profile</span>
+                    </button></li>
+                <li><button class="nav-btn flex flex-col items-center text-blue-300 hover:text-blue-400 transition"
+                        data-target="settings">
+                        <svg class="h-6 w-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 8c-1.657 0-3 1.343-3 3v1h6v-1c0-1.657-1.343-3-3-3zM6 14v2h12v-2H6z"></path>
+                        </svg>
+                        <span class="text-xs">Settings</span>
+                    </button></li>
+                <li><button class="nav-btn flex flex-col items-center text-blue-300 hover:text-blue-400 transition"
+                        data-target="safety">
+                        <svg class="h-6 w-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M9.75 9.75l4.5 4.5M4.5 12a7.5 7.5 0 0115 0 7.5 7.5 0 01-15 0z"></path>
+                        </svg>
+                        <span class="text-xs">Safety Tips</span>
+                    </button></li>
+                <li><button class="nav-btn flex flex-col items-center text-blue-300 hover:text-blue-400 transition"
+                        data-target="map">
+                        <svg class="h-6 w-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 17l4-4 4 4m0-8l-4 4-4-4"></path>
+                        </svg>
+                        <span class="text-xs">View Map</span>
+                    </button></li>
+            </ul>
+        </div>
+    </main>
+    <!-- Small CSS animations -->
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <!-- Ionicons (v5) -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- JavaScript for Magic Section Switch -->
+    <script>
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.section');
+
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+
+                sections.forEach(sec => {
+                    if (sec.id === target) {
+                        sec.classList.remove('hidden');
+                    } else {
+                        sec.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+
+        let userId = '<%= user._id %>';
+        let lastLocationUpdateTime = <%= lastLocationUpdateTime || 'null' %>;
+        let locationInterval = null;
+
+        function requestLocationPopup() {
+            const popup = document.getElementById('locationPopup');
+            popup.style.display = 'flex';
+        }
+
+        function hideLocationPopup() {
+            const popup = document.getElementById('locationPopup');
+            popup.style.display = 'none';
+        }
+
+        function requestLocation() {
+            const spinner = document.getElementById('spinner');
+            const allowBtn = document.getElementById('allowBtn');
+
+            spinner.classList.remove('hidden');
+            allowBtn.disabled = true;
+            allowBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        sendLocation(position.coords.latitude, position.coords.longitude);
+                        hideLocationPopup();
+
+                        spinner.classList.add('hidden');
+                        allowBtn.disabled = false;
+                        allowBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+                        if (!locationInterval) {
+                            locationInterval = setInterval(checkLocation, 240000);
+                        }
+                    },
+                    (error) => {
+                        console.log('Permission denied or location error:', error);
+                        requestLocationPopup();
+
+                        spinner.classList.add('hidden');
+                        allowBtn.disabled = false;
+                        allowBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    },
+                    { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+                );
+            } else {
+                alert("Geolocation is not supported by your browser.");
+            }
+        }
+
+        function checkLocation() {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    sendLocation(position.coords.latitude, position.coords.longitude);
+                },
+                (error) => {
+                    console.log('Lost location permission, showing popup again.');
+                    requestLocationPopup();
+                    clearInterval(locationInterval);
+                    locationInterval = null;
+                },
+                { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+            );
+        }
+
+        function sendLocation(latitude, longitude) {
+            axios.post('/update-location', { latitude, longitude, userId })
+                .then(response => {
+                    console.log('Location updated:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error sending location:', error);
+                });
+        }
+
+        window.onload = () => {
+            const now = Date.now();
+            const fourMinutes = 4 * 60 * 1000; // 240000 ms
+
+            if (lastLocationUpdateTime && (now - lastLocationUpdateTime) <= fourMinutes) {
+                console.log('Recent location available, no need to show popup.');
+                hideLocationPopup();
+
+                if (!locationInterval) {
+                    locationInterval = setInterval(checkLocation, 240000);
+                }
+            } else {
+                console.log('Location not updated recently, trying to get location silently...');
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            sendLocation(position.coords.latitude, position.coords.longitude);
+                            hideLocationPopup();
+
+                            if (!locationInterval) {
+                                locationInterval = setInterval(checkLocation, 240000);
+                            }
+                        },
+                        (error) => {
+                            console.log('Silent location fetch failed, asking user...');
+                            requestLocationPopup();
+                        },
+                        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+                    );
+                } else {
+                    requestLocationPopup();
+                }
+            }
+        };
+
+    </script>
+
+</body>
+
+</html>
