@@ -317,6 +317,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- JavaScript for Magic Section Switch -->
     <script>
+        // To show the different section
         const navButtons = document.querySelectorAll('.nav-btn');
         const sections = document.querySelectorAll('.section');
 
@@ -335,6 +336,7 @@
         });
 
 
+        // Location taking 
         let userId = '<%= user._id %>';
         let lastLocationUpdateTime = <%= lastLocationUpdateTime || 'null' %>;
         let locationInterval = null;
