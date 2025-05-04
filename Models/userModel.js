@@ -20,6 +20,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    address: {
+        type: String,
+
+    },
+    profileImage: {
+        type: String,
+        default: 'logo.png'
+    }
     
 });
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -69,4 +69,446 @@
   </div>
 
 </body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women Safety : Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- tailwid css cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <main>
+        <aside class="sidebar " data-sidebar>
+            <div class="sidebar-info">
+                <figure class="avatar-box ">
+                    <img class="rounded-sm" src="
+                    https://imgs.search.brave.com/mkaJZflFoX-2awI2hQzphZaVfGeJ8n3XzTVjLS8Adrs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5naXRlbS5jb20v/cGltZ3MvbS85NS05/NTMzODFfd29yay1w/cm9maWxlLXVzZXIt/ZGVmYXVsdC1mZW1h/bGUtc3VpdC1mZW1h/bGUtcHJvZmlsZS5w/bmc
+                    " alt="avatar" width="80">
+                </figure>
+
+                <div class="info-content">
+                    <h1 class="name" title="Richard Hanrick">Sumit Patra</h1>
+                </div>
+
+                <button class="info-more-btn" data-sidebar-btn>
+                    <span>Show More</span>
+                    <ion-icon name="chevron-down"></ion-icon>
+                </button>
+            </div>
+
+            <div class="sidebar-info-more">
+                <div class="separator"></div>
+
+                <ul class="contacts-list">
+                    <li class="contact-item">
+                        <div class="icon-box">
+                            <ion-icon name="mail-outline"></ion-icon>
+                        </div>
+
+                        <div class="contact-info">
+                            <p class="contact-title">Email</p>
+
+                            <a href="mailto:richard@example.com" class="contact-link">patra.sumit2004@gmail.com</a>
+                        </div>
+                    </li>
+
+                    <li class="contact-item">
+                        <div class="icon-box">
+                            <ion-icon name="phone-portrait-outline"></ion-icon>
+                        </div>
+
+                        <div class="contact-info">
+                            <p class="contact-title">Phone</p>
+
+                            <a href="tel:+12133522795" class="contact-link">+91 6291856656</a>
+                        </div>
+                    </li>
+
+                    <li class="contact-item">
+                        <div class="icon-box">
+                            <ion-icon name="location-outline"></ion-icon>
+                        </div>
+
+                        <div class="contact-info">
+                            <p class="contact-title">Location</p>
+
+                            <address>Kolkata, West Bengal, India</address>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="separator"></div>
+
+                <ul class="social-list">
+                    <li class="social-item"><a href="#" class="social-link"><ion-icon
+                                name="logo-facebook"></ion-icon></a></li>
+                    <li class="social-item"><a href="#" class="social-link"><ion-icon
+                                name="logo-twitter"></ion-icon></a></li>
+                    <li class="social-item"><a href="#" class="social-link"><ion-icon
+                                name="logo-instagram"></ion-icon></a></li>
+                </ul>
+            </div>
+        </aside>
+          
+
+
+        <div class="main-content">
+            <nav class="navbar hidden sm:lg:flex lg:items-center lg:justify-between">
+                <ul class="navbar-list">
+                    <li class="navbar-item"><button class="navbar-link active" data-nav-link>Home</button></li>
+                    <li class="navbar-item"><button class="navbar-link" data-nav-link>Profile</button></li>
+                    <li class="navbar-item"><button class="navbar-link" data-nav-link>Settings</button></li>
+                    <li class="navbar-item"><button class="navbar-link" data-nav-link>Safety Tips</button></li>
+                    <li class="navbar-item"><button class="navbar-link" data-nav-link>View Map</button></li>
+                </ul>
+            </nav>
+            <!-- home -->
+            <article class="home active" data-page="home">
+                <header>
+                    <h2 class="h2 article-title">Home</h2>
+                </header>
+
+                <section class="service">
+                    <h3 class="h3 service-title">Empowering Safety, Anytime, Anywhere.</h3>
+
+                    <ul class="service-list">
+                        <li class="panic-card">
+                            <button class="panic-button">SOS</button>
+                        </li>
+
+                        <li class="emergency-card">
+
+
+                            <div class="contact-content-box">
+                                <h4 class="h4 contact-item-title">Emergency Contact</h4>
+                                <p class="contact-item-text">Contact Name: John Doe</p>
+                                <p class="contact-item-text">Phone: +1 234 567 890</p>
+                            </div>
+                        </li>
+
+
+                        <li class="police-card">
+
+
+                            <div class="police-content-box">
+                                <h4 class="h4 police-item-title">Nearby Police Station</h4>
+                                <p class="police-item-text">Station Name: Central Police Station</p>
+                                <p class="police-item-text">Address: 123 Main Street, Cityville</p>
+                                <p class="police-item-text">Phone: +1 987 654 3210</p>
+                            </div>
+                        </li>
+
+
+                        <li class="hospital-card">
+
+
+                            <div class="hospital-content-box">
+                                <h4 class="h4 hospital-item-title">Nearby Hospital</h4>
+                                <p class="hospital-item-text">Hospital Name: City General Hospital</p>
+                                <p class="hospital-item-text">Address: 456 Health Ave, Cityville</p>
+                                <p class="hospital-item-text">Phone: +1 555 123 4567</p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </section>
+
+                <section class="testimonials">
+                    <h3 class="h3 testimonials-title">Safety Tips</h3>
+
+                    <ul class="testimonials-list has-scrollbar">
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title> Share Your Travel Plans
+                                </h4>
+
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Inform a trusted friend or family member about your whereabouts, especially if
+                                        traveling alone or at night. Share your live location when possible.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Use Well-Lit and Busy
+                                    Routes</h4>
+
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Stick to main streets and avoid dark or isolated areas, particularly when walking
+                                        or parking your vehicle.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Learn Basic Self-Defense
+                                    Techniques</h4>
+
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Equip yourself with self-defense skills that can be used in emergencies. Carry
+                                        safety tools like pepper spray, a whistle, or a personal alarm.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Emergency Numbers at Hand
+                                </h4>
+
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Save emergency contact numbers, including the police, nearby hospitals, and close
+                                        friends, on speed dial for immediate access.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+            </article>
+            <!-- Profile -->
+            <article class="profile " data-page="profile">
+                <header>
+                    <h2 class="h2 article-title">Profile</h2>
+                </header>
+                <section class="contact-form">
+
+
+                    <form action="#" class="form" data-form>
+                        <div class="input-wrapper">
+                            <input type="text" name="fullname" class="form-input" placeholder="Full name" required
+                                data-form-input>
+                            <input type="email" name="email" class="form-input" placeholder="Email Address" required
+                                data-form-input>
+                            <input type="text" name="address" class="form-input" placeholder="Address" required
+                                data-form-input>
+                            <input type="date" name="date of birth" class="form-input" placeholder="Date Of Birth"
+                                required data-form-input>
+                            <input type="number" name="age" class="form-input" placeholder="Age" required
+                                data-form-input>
+                            <input type="number" name="alternative number" class="form-input"
+                                placeholder="Alternative Number" required data-form-input>
+                            <input type="text" name="pincode" class="form-input" placeholder="Pincode" required
+                                data-form-input>
+                            <input type="text" name="landmark" class="form-input" placeholder="Landmark" required
+                                data-form-input>
+                        </div>
+
+
+                        <button class="form-btn" type="submit" data-form-btn>
+                            <span>Save Changes</span>
+                        </button>
+                    </form>
+                </section>
+
+
+
+            </article>
+            <!-- Setting -->
+            <article class="settings " data-page="settings">
+                <header>
+                    <h2 class="h2 article-title">Settings</h2>
+                </header>
+
+                <h3 class="h3 form-title">Emergency Contact</h3>
+
+                <form action="#" class="form" data-form>
+                    <div class="input-wrapper">
+                        <input type="text" name="fullname" class="form-input" placeholder="Full name" required
+                            data-form-input>
+                        <input type="number" name="phone number" class="form-input" placeholder="Phone Number" required
+                            data-form-input>
+                        <input type="text" name="relation" class="form-input" placeholder="Relation" required
+                            data-form-input>
+                    </div>
+
+                    <button class="form-btn" type="submit" data-form-btn>
+                        <span>Save Contact</span>
+                    </button>
+                </form>
+
+                <ul class="service-list">
+
+                    <li class="emergency-card">
+
+
+                        <div class="contact-content-box">
+                            <h4 class="h4 contact-item-title">Emergency Contact</h4>
+                            <p class="contact-item-text">Contact Name: John Doe</p>
+                            <p class="contact-item-text">Phone: +1 234 567 890</p>
+                            <p class="contact-item-text">Relation: Friend</p>
+                        </div>
+                    </li>
+                    <li class="emergency-card">
+
+
+                        <div class="contact-content-box">
+                            <h4 class="h4 contact-item-title">Emergency Contact</h4>
+                            <p class="contact-item-text">Contact Name: John Doe</p>
+                            <p class="contact-item-text">Phone: +1 234 567 890</p>
+                            <p class="contact-item-text">Relation: Friend</p>
+                        </div>
+                    </li>
+                    <li class="emergency-card">
+
+
+                        <div class="contact-content-box">
+                            <h4 class="h4 contact-item-title">Emergency Contact</h4>
+                            <p class="contact-item-text">Contact Name: John Doe</p>
+                            <p class="contact-item-text">Phone: +1 234 567 890</p>
+                            <p class="contact-item-text">Relation: Friend</p>
+                        </div>
+                    </li>
+                    <li class="emergency-card">
+
+
+                        <div class="contact-content-box">
+                            <h4 class="h4 contact-item-title">Emergency Contact</h4>
+                            <p class="contact-item-text">Contact Name: John Doe</p>
+                            <p class="contact-item-text">Phone: +1 234 567 890</p>
+                            <p class="contact-item-text">Relation: Friend</p>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </article>
+            <!-- Safety tips -->
+            <article class="safety tips " data-page="safety tips">
+                <header>
+                    <h2 class="h2 article-title">Safety Tips</h2>
+                </header>
+                <section class="service">
+                    <h3 class="h3 service-title">Empowering Safety, Anytime, Anywhere.</h3>
+
+                    <ul class="service-list">
+
+                        <li class="emergency-card">
+                            <div class="contact-content-box">
+                                <h4 class="h4 contact-item-title">Emergency Numbers At Hand</h4>
+                                <p class="contact-item-text">Save emergency contact numbers, including the police,
+                                    nearby hospitals, and close
+                                    friends, on speed dial for immediate access.</p>
+                            </div>
+                        </li>
+
+
+                        <li class="police-card">
+
+
+                            <div class="police-content-box">
+                                <h4 class="h4 police-item-title">Learn Basic Self-Defense
+                                    Techniques</h4>
+                                <p class="police-item-text">Equip yourself with self-defense skills that can be used in
+                                    emergencies. Carry
+                                    safety tools like pepper spray, a whistle, or a personal alarm.</p>
+                            </div>
+                        </li>
+
+
+                        <li class="hospital-card">
+
+
+                            <div class="hospital-content-box">
+                                <h4 class="h4 hospital-item-title">Use Well Known Routes & Local Paths</h4>
+                                <p class="hospital-item-text">Stick to main streets and avoid dark or isolated areas,
+                                    particularly when walking
+                                    or parking your vehicle.</p>
+                            </div>
+                        </li>
+                        <li class="hospital-card">
+
+
+                            <div class="hospital-content-box">
+                                <h4 class="h4 hospital-item-title"> Share Your Travel Plans</h4>
+                                <p class="hospital-item-text">Inform a trusted friend or family member about your
+                                    whereabouts, especially if
+                                    traveling alone or at night. Share your live location when possible.</p>
+                            </div>
+                        </li>
+                        <li class="hospital-card">
+
+
+                            <div class="hospital-content-box">
+                                <h4 class="h4 hospital-item-title">Stay Alert When Meeting Strangers</h4>
+                                <p class="hospital-item-text">If meeting someone for the first time, choose public
+                                    places and inform a friend about your plans.</p>
+                            </div>
+                        </li>
+                        <li class="hospital-card">
+
+
+                            <div class="hospital-content-box">
+                                <h4 class="h4 hospital-item-title">Stay Calm and Confident</h4>
+                                <p class="hospital-item-text">In any tense situation, keeping calm and appearing
+                                    confident can make you less of a target. Avoid panicking, which may make the
+                                    situation worse.</p>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </section>
+
+            </article>
+            <!-- Map View -->
+            <article class="view map " data-page="view map">
+                <header>
+                    <h2 class="h2 article-title">View Map</h2>
+                </header>
+
+                <section class="mapbox" data-mapbox>
+                    <figure>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-121.58334177520186!3d38.56165006739519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ac672b28397f9%3A0x921f6aaa74197fdb!2sSacramento%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
+                            width="400" height="300" loading="lazy"></iframe>
+                    </figure>
+                </section>
+
+                <section class="contact-form">
+                    <h3 class="h3 form-title">Contact Form</h3>
+
+                    <form action="#" class="form" data-form>
+                        <div class="input-wrapper">
+                            <input type="text" name="fullname" class="form-input" placeholder="Full name" required
+                                data-form-input>
+                            <input type="email" name="email" class="form-input" placeholder="Email Address" required
+                                data-form-input>
+                        </div>
+
+                        <textarea name="message" class="form-input" placeholder="Your Message" required
+                            data-form-input=""></textarea>
+
+                        <button class="form-btn" type="submit" data-form-btn>
+                            <ion-icon name="paper-plane"></ion-icon>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <script src="../js/dashboard.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
 </html>
